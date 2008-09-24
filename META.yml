@@ -17,7 +17,7 @@ no_index:
     - inc
     - t
 requires: 
-  CHI: 0.07
-  Moose: 0.33
+  CHI: 0.081
+  Moose: 0.54
   perl: 5.6.0
-version: 0.01
+version: 0.02
