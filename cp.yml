@@ -1,2 +1,0 @@
-module: CHI::Driver::Memcached
-svnroot: https://perl-cache.googlecode.com/svn/chi-driver-memcached

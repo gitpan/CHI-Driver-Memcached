@@ -5,7 +5,7 @@ use Moose;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 extends 'CHI::Driver';
 
@@ -21,8 +21,7 @@ sub BUILD {
     my ( $self, $params ) = @_;
 
     $self->{mc_params} = $self->non_common_constructor_params($params);
-    $self->{mc_params}->{namespace} = $params->{namespace}
-      if defined( $params->{namespace} );
+    $self->{mc_params}->{namespace} = $self->{namespace} . ":";
 }
 
 sub _build_contained_cache {
@@ -99,7 +98,7 @@ A CHI driver that uses Cache::Memcached to store data in the specified memcached
 
 =head1 CONSTRUCTOR OPTIONS
 
-Namespace, and any constructor options L<not recognized by CHI|CHI/constructor>, are passed along to L<Cached::Memcached-E<gt>new>. For example: 
+Namespace, appended with ":", is passed along to L<Cached::Memcached-E<gt>new>, along with any constructor options L<not recognized by CHI|CHI/constructor>. For example: 
 
 =over
 
@@ -145,13 +144,28 @@ These standard CHI methods cannot currently be supported by memcached.
 
 =back
 
-=head1 SEE ALSO
+=head1 SUPPORT AND DOCUMENTATION
 
-L<CHI|CHI>, L<Cache::Memcached|Cache::Memcached>
+Questions and feedback are welcome, and should be directed to the perl-cache mailing list:
+
+    http://groups.google.com/group/perl-cache-discuss
+
+Bugs and feature requests will be tracked at RT:
+
+    http://rt.cpan.org/NoAuth/Bugs.html?Dist=CHI-Driver-Memcached
+
+The latest source code can be browsed and fetched at:
+
+    http://github.com/jonswar/perl-chi-driver-memcached/tree/master
+    git clone git://github.com/jonswar/perl-chi-driver-memcached.git
 
 =head1 AUTHOR
 
 Jonathan Swartz
+
+=head1 SEE ALSO
+
+L<CHI|CHI>, L<Cache::Memcached|Cache::Memcached>
 
 =head1 COPYRIGHT & LICENSE
 

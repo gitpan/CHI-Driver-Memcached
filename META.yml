@@ -20,4 +20,4 @@ requires:
   CHI: 0.081
   Cache::Memcached: 1.14
   perl: 5.6.0
-version: 0.03
+version: 0.04

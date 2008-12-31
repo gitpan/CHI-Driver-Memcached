@@ -19,8 +19,8 @@ DESCRIPTION
     memcached server(s).
 
 CONSTRUCTOR OPTIONS
-    Namespace, and any constructor options not recognized by CHI, are passed
-    along to Cached::Memcached->new. For example:
+    Namespace, appended with ":", is passed along to Cached::Memcached->new,
+    along with any constructor options not recognized by CHI. For example:
 
     compress_threshold
     debug
@@ -43,11 +43,26 @@ UNSUPPORTED METHODS
     get_namespaces
     is_empty
     purge
-SEE ALSO
-    CHI, Cache::Memcached
+SUPPORT AND DOCUMENTATION
+    Questions and feedback are welcome, and should be directed to the
+    perl-cache mailing list:
+
+        http://groups.google.com/group/perl-cache-discuss
+
+    Bugs and feature requests will be tracked at RT:
+
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=CHI-Driver-Memcached
+
+    The latest source code can be browsed and fetched at:
+
+        http://github.com/jonswar/perl-chi-driver-memcached/tree/master
+        git clone git://github.com/jonswar/perl-chi-driver-memcached.git
 
 AUTHOR
     Jonathan Swartz
+
+SEE ALSO
+    CHI, Cache::Memcached
 
 COPYRIGHT & LICENSE
     Copyright (C) 2007 Jonathan Swartz.
