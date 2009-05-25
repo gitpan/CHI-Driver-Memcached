@@ -2,15 +2,20 @@ package CHI::Driver::Memcached;
 use CHI;
 use Cache::Memcached;
 use Carp;
-use Mouse;
+use Moose;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 has 'memd' => ( is => 'ro' );
 
 extends 'CHI::Driver::Base::CacheContainer';
+
+# Unsupported methods
+#
+__PACKAGE__->declare_unsupported_methods(
+    qw(dump_as_hash get_keys get_namespaces is_empty clear purge));
 
 __PACKAGE__->meta->make_immutable();
 
@@ -28,43 +33,14 @@ sub _build_contained_cache {
     return Cache::Memcached->new( $self->{mc_params} );
 }
 
-# Unsupported methods
-#
-
-__PACKAGE__->declare_unsupported_methods(
-    qw(dump_as_hash get_keys get_namespaces is_empty purge));
-
-# Memcached calls clear 'flush_all'
-#
-
-sub clear {
-    my ($self) = @_;
-
-    $self->memd->flush_all();
-}
-
 # Memcached supports fast multiple get
 #
 
-sub get_multi_hashref {
+sub fetch_multi_hashref {
     my ( $self, $keys ) = @_;
     croak "must specify keys" unless defined($keys);
 
-    my $keyvals = $self->memd->get_multi(@$keys);
-    foreach my $key ( keys(%$keyvals) ) {
-        if ( defined $keyvals->{$key} ) {
-            $keyvals->{$key} = $self->get( $key, data => $keyvals->{$key} );
-        }
-    }
-    return $keyvals;
-}
-
-sub get_multi_arrayref {
-    my ( $self, $keys ) = @_;
-    croak "must specify keys" unless defined($keys);
-
-    my $keyvals = $self->get_multi_hashref($keys);
-    return [ map { $keyvals->{$_} } @$keys ];
+    return $self->memd->get_multi(@$keys);
 }
 
 1;
@@ -92,11 +68,14 @@ CHI::Driver::Memcached -- Distributed cache via memcached (memory cache daemon)
 
 =head1 DESCRIPTION
 
-A CHI driver that uses Cache::Memcached to store data in the specified memcached server(s).
+A CHI driver that uses Cache::Memcached to store data in the specified
+memcached server(s).
 
 =head1 CONSTRUCTOR OPTIONS
 
-Namespace, appended with ":", is passed along to L<Cached::Memcached-E<gt>new>, along with any constructor options L<not recognized by CHI|CHI/constructor>. For example: 
+Namespace, appended with ":", is passed along to L<Cached::Memcached-E<gt>new>,
+along with any constructor options L<not recognized by CHI|CHI/constructor>.
+For example:
 
 =over
 
@@ -116,8 +95,8 @@ Namespace, appended with ":", is passed along to L<Cached::Memcached-E<gt>new>, 
 
 =item memd
 
-Returns a handle to the underlying Cache::Memcached object. You can use this to call memcached-specific methods that
-are not supported by the general API, e.g.
+Returns a handle to the underlying Cache::Memcached object. You can use this to
+call memcached-specific methods that are not supported by the general API, e.g.
 
     $self->memd->incr("key");
     my $stats = $self->memd->stats();
@@ -144,7 +123,8 @@ These standard CHI methods cannot currently be supported by memcached.
 
 =head1 SUPPORT AND DOCUMENTATION
 
-Questions and feedback are welcome, and should be directed to the perl-cache mailing list:
+Questions and feedback are welcome, and should be directed to the perl-cache
+mailing list:
 
     http://groups.google.com/group/perl-cache-discuss
 
@@ -169,11 +149,11 @@ L<CHI|CHI>, L<Cache::Memcached|Cache::Memcached>
 
 Copyright (C) 2007 Jonathan Swartz.
 
-CHI::Driver::Memcached is provided "as is" and without any express or implied warranties, including, without
-limitation, the implied warranties of merchantibility and fitness for a particular
-purpose.
+CHI::Driver::Memcached is provided "as is" and without any express or implied
+warranties, including, without limitation, the implied warranties of
+merchantibility and fitness for a particular purpose.
 
-This program is free software; you can redistribute it and/or modify it under the same
-terms as Perl itself.
+This program is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut
