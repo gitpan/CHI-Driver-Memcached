@@ -2,6 +2,10 @@ Revision history for CHI-Driver-Memcached
 
 ** denotes an incompatible change
 
+0.08  May 27, 2009
+
+- depend on CHI 0.241, for fuller set of dependencies
+
 0.07  May 26, 2009
 
 - Revert test script to previous format

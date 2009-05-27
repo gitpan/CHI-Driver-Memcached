@@ -17,7 +17,7 @@ no_index:
     - inc
     - t
 requires: 
-  CHI: 0.23
+  CHI: 0.241
   Cache::Memcached: 1.14
   perl: 5.6.0
-version: 0.07
+version: 0.08
