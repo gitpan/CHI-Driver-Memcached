@@ -6,9 +6,9 @@ use Moose;
 use strict;
 use warnings;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
-has 'memd' => ( is => 'ro' );
+has 'memd' => ( is => 'ro', init_arg => undef );
 
 extends 'CHI::Driver::Base::CacheContainer';
 
