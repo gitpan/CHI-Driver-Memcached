@@ -2,6 +2,12 @@ Revision history for CHI-Driver-Memcached
 
 ** denotes an incompatible change
 
+0.10  Nov 29, 2009
+
+- support CHI::Driver::Memcached::Fast and CHI::Driver::Memcached::libmemcached
+- allow memd_params to be passed explicitly
+- depend on CHI 0.33 for non_common_constructor_params fix
+
 0.09  Nov 23, 2009
 
 - fix failing tests

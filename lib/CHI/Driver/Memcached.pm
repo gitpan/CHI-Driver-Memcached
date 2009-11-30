@@ -1,47 +1,14 @@
 package CHI::Driver::Memcached;
-use CHI;
-use Cache::Memcached;
-use Carp;
 use Moose;
 use strict;
 use warnings;
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
-has 'memd' => ( is => 'ro', init_arg => undef );
-
-extends 'CHI::Driver::Base::CacheContainer';
-
-# Unsupported methods
-#
-__PACKAGE__->declare_unsupported_methods(
-    qw(dump_as_hash get_keys get_namespaces is_empty clear purge));
+extends 'CHI::Driver::Memcached::Base';
+has '+memd_class' => ( default => 'Cache::Memcached' );
 
 __PACKAGE__->meta->make_immutable();
-
-sub BUILD {
-    my ( $self, $params ) = @_;
-
-    $self->{mc_params} = $self->non_common_constructor_params($params);
-    $self->{mc_params}->{namespace} = $self->{namespace} . ":";
-    $self->{memd} = $self->{_contained_cache} = $self->_build_contained_cache;
-}
-
-sub _build_contained_cache {
-    my ($self) = @_;
-
-    return Cache::Memcached->new( $self->{mc_params} );
-}
-
-# Memcached supports fast multiple get
-#
-
-sub fetch_multi_hashref {
-    my ( $self, $keys ) = @_;
-    croak "must specify keys" unless defined($keys);
-
-    return $self->memd->get_multi(@$keys);
-}
 
 1;
 
@@ -58,7 +25,7 @@ CHI::Driver::Memcached -- Distributed cache via memcached (memory cache daemon)
     use CHI;
 
     my $cache = CHI->new(
-        driver => 'Memcached',
+        driver => 'Memcached',   # or 'Memcached::Fast', or 'Memcached::libmemcached'
         namespace => 'products',
         servers => [ "10.0.0.15:11211", "10.0.0.15:11212", "/var/sock/memcached",
         "10.0.0.17:11211", [ "10.0.0.17:11211", 3 ] ],
@@ -71,32 +38,32 @@ CHI::Driver::Memcached -- Distributed cache via memcached (memory cache daemon)
 A CHI driver that uses Cache::Memcached to store data in the specified
 memcached server(s).
 
+L<CHI::Driver::Memcached::Fast> and L<CHI::Driver::Memcached::libmemcached> are
+also available as part of this distribution. They work with other Memcached
+clients and support a similar feature set. Documentation for all three modules
+is presented below.
+
 =head1 CONSTRUCTOR OPTIONS
 
-Namespace, appended with ":", is passed along to L<Cached::Memcached-E<gt>new>,
-along with any constructor options L<not recognized by CHI|CHI/constructor>.
-For example:
+Namespace, appended with ":", is passed along to the Cached::Memcached::*
+constructor, along with any constructor options L<not recognized by
+CHI|CHI/constructor> - for example I<servers>, I<compress_threshold> and
+I<debug>.
 
-=over
-
-=item compress_threshold
-
-=item debug
-
-=item no_rehash
-
-=item servers
-
-=back
+If you need more control over the options passed to Cache::Memcached::*, you
+may specify a hash directly in C<memd_params>.
 
 =head1 METHODS
+
+Besides the standard CHI methods:
 
 =over
 
 =item memd
 
-Returns a handle to the underlying Cache::Memcached object. You can use this to
-call memcached-specific methods that are not supported by the general API, e.g.
+Returns a handle to the underlying Cache::Memcached::* object. You can use this
+to call memcached-specific methods that are not supported by the general API,
+e.g.
 
     $self->memd->incr("key");
     my $stats = $self->memd->stats();
@@ -105,11 +72,14 @@ call memcached-specific methods that are not supported by the general API, e.g.
 
 =head1 UNSUPPORTED METHODS
 
-These standard CHI methods cannot currently be supported by memcached.
+These standard CHI methods cannot currently be supported by memcached, chiefly
+because there is no way to get a list of stored keys.
 
 =over
 
 =item dump_as_hash
+
+=item clear
 
 =item get_keys
 
@@ -143,7 +113,8 @@ Jonathan Swartz
 
 =head1 SEE ALSO
 
-L<CHI|CHI>, L<Cache::Memcached|Cache::Memcached>
+L<CHI|CHI>, L<Cache::Memcached|Cache::Memcached>,
+L<CHI::Driver::Memcached::Fast>, L<CHI::Driver::Memcached::libmemcached>
 
 =head1 COPYRIGHT & LICENSE
 

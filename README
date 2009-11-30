@@ -6,7 +6,7 @@ SYNOPSIS
         use CHI;
 
         my $cache = CHI->new(
-            driver => 'Memcached',
+            driver => 'Memcached',   # or 'Memcached::Fast', or 'Memcached::libmemcached'
             namespace => 'products',
             servers => [ "10.0.0.15:11211", "10.0.0.15:11212", "/var/sock/memcached",
             "10.0.0.17:11211", [ "10.0.0.17:11211", 3 ] ],
@@ -18,27 +18,37 @@ DESCRIPTION
     A CHI driver that uses Cache::Memcached to store data in the specified
     memcached server(s).
 
-CONSTRUCTOR OPTIONS
-    Namespace, appended with ":", is passed along to Cached::Memcached->new,
-    along with any constructor options not recognized by CHI. For example:
+    CHI::Driver::Memcached::Fast and CHI::Driver::Memcached::libmemcached
+    are also available as part of this distribution. They work with other
+    Memcached clients and support a similar feature set. Documentation for
+    all three modules is presented below.
 
-    compress_threshold
-    debug
-    no_rehash
-    servers
+CONSTRUCTOR OPTIONS
+    Namespace, appended with ":", is passed along to the
+    Cached::Memcached::* constructor, along with any constructor options not
+    recognized by CHI - for example *servers*, *compress_threshold* and
+    *debug*.
+
+    If you need more control over the options passed to Cache::Memcached::*,
+    you may specify a hash directly in `memd_params'.
+
 METHODS
+    Besides the standard CHI methods:
+
     memd
-        Returns a handle to the underlying Cache::Memcached object. You can
-        use this to call memcached-specific methods that are not supported
-        by the general API, e.g.
+        Returns a handle to the underlying Cache::Memcached::* object. You
+        can use this to call memcached-specific methods that are not
+        supported by the general API, e.g.
 
             $self->memd->incr("key");
             my $stats = $self->memd->stats();
 
 UNSUPPORTED METHODS
-    These standard CHI methods cannot currently be supported by memcached.
+    These standard CHI methods cannot currently be supported by memcached,
+    chiefly because there is no way to get a list of stored keys.
 
     dump_as_hash
+    clear
     get_keys
     get_namespaces
     is_empty
@@ -62,7 +72,8 @@ AUTHOR
     Jonathan Swartz
 
 SEE ALSO
-    CHI, Cache::Memcached
+    CHI, Cache::Memcached, CHI::Driver::Memcached::Fast,
+    CHI::Driver::Memcached::libmemcached
 
 COPYRIGHT & LICENSE
     Copyright (C) 2007 Jonathan Swartz.

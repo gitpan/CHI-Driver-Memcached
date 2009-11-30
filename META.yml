@@ -20,9 +20,8 @@ no_index:
     - inc
     - t
 requires:
-  CHI: 0.31
-  Cache::Memcached: 1.14
+  CHI: 0.33
   perl: 5.6.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.09
+version: 0.10
