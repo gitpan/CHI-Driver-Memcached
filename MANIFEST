@@ -15,7 +15,6 @@ lib/CHI/Driver/Memcached.pm
 lib/CHI/Driver/Memcached/Base.pm
 lib/CHI/Driver/Memcached/Fast.pm
 lib/CHI/Driver/Memcached/libmemcached.pm
-lib/CHI/Driver/Memcached/t/CHIDriverTests.pm
 lib/CHI/Driver/Memcached/t/CHIDriverTests/Base.pm
 lib/CHI/Driver/Memcached/t/CHIDriverTests/Fast.pm
 lib/CHI/Driver/Memcached/t/CHIDriverTests/libmemcached.pm
