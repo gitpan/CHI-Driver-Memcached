@@ -1,13 +1,14 @@
 package CHI::Driver::Memcached::Base;
+BEGIN {
+  $CHI::Driver::Memcached::Base::VERSION = '0.13';
+}
 use CHI;
 use Carp;
 use Moose;
 use strict;
 use warnings;
 
-our $VERSION = '0.10';
-
-has 'memd' => ( is => 'ro', init_arg => undef );
+has 'memd'        => ( is => 'ro', init_arg => undef );
 has 'memd_class'  => ( is => 'ro' );
 has 'memd_params' => ( is => 'ro' );
 

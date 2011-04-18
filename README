@@ -2,6 +2,9 @@ NAME
     CHI::Driver::Memcached -- Distributed cache via memcached (memory cache
     daemon)
 
+VERSION
+    version 0.13
+
 SYNOPSIS
         use CHI;
 
@@ -53,6 +56,7 @@ UNSUPPORTED METHODS
     get_namespaces
     is_empty
     purge
+
 SUPPORT AND DOCUMENTATION
     Questions and feedback are welcome, and should be directed to the
     perl-cache mailing list:
@@ -84,4 +88,10 @@ COPYRIGHT & LICENSE
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by Jonathan Swartz.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 

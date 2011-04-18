@@ -1,15 +1,14 @@
 ---
-abstract: 'Memcached driver for CHI'
+abstract: 'Use Memcached for cache storage'
 author:
   - 'Jonathan Swartz <swartz@pobox.com>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
   Test::Class: 0
   Test::More: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
-distribution_type: module
-generated_by: 'Module::Install version 0.91'
+  ExtUtils::MakeMaker: 6.31
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.102400'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,11 +16,11 @@ meta-spec:
 name: CHI-Driver-Memcached
 no_index:
   directory:
-    - inc
-    - t
+    - lib/CHI/Driver/Memcached/t
+    - lib/CHI/Driver/Memcached/Test
 requires:
   CHI: 0.33
-  perl: 5.6.0
 resources:
-  license: http://dev.perl.org/licenses/
-version: 0.12
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=CHI-Driver-Memcached
+  repository: git://github.com/jonswar/perl-chi-driver-memcached.git
+version: 0.13

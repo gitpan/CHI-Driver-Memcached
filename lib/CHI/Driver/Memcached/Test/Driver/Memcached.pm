@@ -1,4 +1,7 @@
 package CHI::Driver::Memcached::Test::Driver::Memcached;
+BEGIN {
+  $CHI::Driver::Memcached::Test::Driver::Memcached::VERSION = '0.13';
+}
 use Moose;
 use strict;
 use warnings;

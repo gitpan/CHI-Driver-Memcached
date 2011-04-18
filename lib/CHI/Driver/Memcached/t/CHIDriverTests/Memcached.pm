@@ -1,4 +1,7 @@
 package CHI::Driver::Memcached::t::CHIDriverTests::Memcached;
+BEGIN {
+  $CHI::Driver::Memcached::t::CHIDriverTests::Memcached::VERSION = '0.13';
+}
 use strict;
 use warnings;
 use base qw(CHI::Driver::Memcached::t::CHIDriverTests::Base);

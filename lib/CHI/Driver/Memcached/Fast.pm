@@ -1,24 +1,30 @@
 package CHI::Driver::Memcached::Fast;
+BEGIN {
+  $CHI::Driver::Memcached::Fast::VERSION = '0.13';
+}
 use Moose;
 use strict;
 use warnings;
 
-our $VERSION = '0.10';
-
 extends 'CHI::Driver::Memcached::Base';
+
 has '+memd_class' => ( default => 'Cache::Memcached::Fast' );
 
 __PACKAGE__->meta->make_immutable();
 
 1;
 
-__END__
+
 
 =pod
 
 =head1 NAME
 
 CHI::Driver::Memcached::Fast -- Distributed cache via Cache::Memcached::Fast
+
+=head1 VERSION
+
+version 0.13
 
 =head1 SYNOPSIS
 
@@ -60,4 +66,15 @@ merchantibility and fitness for a particular purpose.
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
 
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2011 by Jonathan Swartz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
+
+
+__END__
+
