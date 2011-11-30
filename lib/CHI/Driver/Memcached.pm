@@ -1,6 +1,6 @@
 package CHI::Driver::Memcached;
 BEGIN {
-  $CHI::Driver::Memcached::VERSION = '0.13';
+  $CHI::Driver::Memcached::VERSION = '0.14';
 }
 use Moose;
 use strict;
@@ -24,7 +24,7 @@ CHI::Driver::Memcached -- Distributed cache via memcached (memory cache daemon)
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

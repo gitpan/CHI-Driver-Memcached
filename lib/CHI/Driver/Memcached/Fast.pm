@@ -1,6 +1,6 @@
 package CHI::Driver::Memcached::Fast;
 BEGIN {
-  $CHI::Driver::Memcached::Fast::VERSION = '0.13';
+  $CHI::Driver::Memcached::Fast::VERSION = '0.14';
 }
 use Moose;
 use strict;
@@ -24,7 +24,7 @@ CHI::Driver::Memcached::Fast -- Distributed cache via Cache::Memcached::Fast
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

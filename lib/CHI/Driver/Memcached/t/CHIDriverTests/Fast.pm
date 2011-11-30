@@ -1,6 +1,6 @@
 package CHI::Driver::Memcached::t::CHIDriverTests::Fast;
 BEGIN {
-  $CHI::Driver::Memcached::t::CHIDriverTests::Fast::VERSION = '0.13';
+  $CHI::Driver::Memcached::t::CHIDriverTests::Fast::VERSION = '0.14';
 }
 use Test::More;
 use strict;

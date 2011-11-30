@@ -1,6 +1,6 @@
 package CHI::Driver::Memcached::libmemcached;
 BEGIN {
-  $CHI::Driver::Memcached::libmemcached::VERSION = '0.13';
+  $CHI::Driver::Memcached::libmemcached::VERSION = '0.14';
 }
 use Moose;
 use strict;
@@ -25,7 +25,7 @@ Cache::Memcached::libmemcached
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 
