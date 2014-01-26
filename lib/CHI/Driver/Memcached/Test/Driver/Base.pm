@@ -1,7 +1,5 @@
 package CHI::Driver::Memcached::Test::Driver::Base;
-BEGIN {
-  $CHI::Driver::Memcached::Test::Driver::Base::VERSION = '0.14';
-}
+$CHI::Driver::Memcached::Test::Driver::Base::VERSION = '0.15';
 use strict;
 use warnings;
 use Moose::Role;

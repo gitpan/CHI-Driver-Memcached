@@ -1,7 +1,5 @@
 package CHI::Driver::Memcached::libmemcached;
-BEGIN {
-  $CHI::Driver::Memcached::libmemcached::VERSION = '0.14';
-}
+$CHI::Driver::Memcached::libmemcached::VERSION = '0.15';
 use Moose;
 use strict;
 use warnings;
@@ -14,7 +12,7 @@ __PACKAGE__->meta->make_immutable();
 
 1;
 
-
+__END__
 
 =pod
 
@@ -25,7 +23,7 @@ Cache::Memcached::libmemcached
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 
@@ -76,7 +74,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

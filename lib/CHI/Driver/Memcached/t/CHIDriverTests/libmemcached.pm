@@ -1,7 +1,5 @@
 package CHI::Driver::Memcached::t::CHIDriverTests::libmemcached;
-BEGIN {
-  $CHI::Driver::Memcached::t::CHIDriverTests::libmemcached::VERSION = '0.14';
-}
+$CHI::Driver::Memcached::t::CHIDriverTests::libmemcached::VERSION = '0.15';
 use Test::More;
 use strict;
 use warnings;

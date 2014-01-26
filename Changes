@@ -2,6 +2,10 @@ Revision history for CHI-Driver-Memcached
 
 ** denotes an incompatible change
 
+0.15  Jan 26, 2014
+
+- replace deprecated Class::MOP::class_load with Class::Load::class_load
+
 0.14  Nov 30, 2011
 
 - allow max_key_length to be overriden

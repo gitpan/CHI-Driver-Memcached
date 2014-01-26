@@ -4,7 +4,7 @@
       "Jonathan Swartz <swartz@pobox.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200008, CPAN::Meta::Converter version 2.102400",
+   "generated_by" : "Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "perl_5"
    ],
@@ -32,8 +32,8 @@
       },
       "test" : {
          "requires" : {
-            "Test::Class" : 0,
-            "Test::More" : 0
+            "Test::Class" : "0",
+            "Test::More" : "0"
          }
       }
    },
@@ -49,6 +49,6 @@
          "web" : "https://github.com/jonswar/perl-chi-driver-memcached"
       }
    },
-   "version" : "0.14"
+   "version" : "0.15"
 }
 

@@ -1,9 +1,8 @@
 package CHI::Driver::Memcached::Base;
-BEGIN {
-  $CHI::Driver::Memcached::Base::VERSION = '0.14';
-}
+$CHI::Driver::Memcached::Base::VERSION = '0.15';
 use CHI;
 use Carp;
+use Class::Load;
 use Moose;
 use strict;
 use warnings;
@@ -34,7 +33,7 @@ sub BUILD {
 sub _build_contained_cache {
     my ($self) = @_;
 
-    Class::MOP::load_class( $self->memd_class );
+    Class::Load::load_class( $self->memd_class );
     return $self->memd_class->new( $self->memd_params );
 }
 
